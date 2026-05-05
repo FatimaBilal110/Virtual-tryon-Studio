@@ -231,7 +231,7 @@ const Index = () => {
         )}
 
         <footer className="text-center text-xs text-muted-foreground mt-12">
-          Powered by Lovable AI · Images processed securely
+          Powered by Fatima Bilal · Images processed securely
         </footer>
       </main>
     </div>
