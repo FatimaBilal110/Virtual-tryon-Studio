@@ -1,0 +1,43 @@
+<svg viewBox="0 0 1000 250" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .bg-rect { fill: #0f172a; }
+    .grid-line { stroke: rgba(255, 255, 255, 0.04); stroke-width: 1; }
+    .title { fill: #ffffff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 42px; font-weight: 800; letter-spacing: 3px; }
+    .subtitle { fill: #94a3b8; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 15px; letter-spacing: 1.5px; }
+    .accent { fill: #6366f1; } /* Indigo accent */
+    .accent-line { stroke: #6366f1; stroke-width: 1; opacity: 0.4; }
+    .scan-line { fill: url(#scan-gradient); opacity: 0.5; }
+  </style>
+
+  <defs>
+    <linearGradient id="scan-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0" />
+      <stop offset="90%" stop-color="#6366f1" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0.8" /> <!-- Violet end -->
+    </linearGradient>
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M 50 0 L 0 0 0 50" fill="none" class="grid-line" />
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" class="bg-rect" />
+  <rect width="100%" height="100%" fill="url(#grid)" />
+
+  <!-- Animated Scan Line (Moving Left to Right) -->
+  <rect x="-250" y="0" width="250" height="100%" class="scan-line">
+    <animate attributeName="x" values="-250; 1000" dur="3.5s" repeatCount="indefinite" />
+  </rect>
+
+  <!-- Text Content -->
+  <text x="500" y="125" class="title" text-anchor="middle">VIRTUAL TRY-ON STUDIO</text>
+  <text x="500" y="160" class="subtitle" text-anchor="middle">VISUALIZE APPAREL INSTANTLY. SEAMLESSLY STYLED.</text>
+  
+  <!-- Decorative Element (Top Center) -->
+  <circle cx="500" cy="45" r="3" class="accent" />
+  <path d="M 450 45 L 550 45" class="accent-line" />
+  
+  <!-- Decorative Elements (Side Accents) -->
+  <path d="M 20 60 L 20 190" class="accent-line" stroke-width="2" opacity="0.2" />
+  <path d="M 980 60 L 980 190" class="accent-line" stroke-width="2" opacity="0.2" />
+</svg>

@@ -1,12 +1,12 @@
 <div align="center">
 
-<img src="assets/logo.gif" alt="Virtual Try-On Studio Logo" width="120"/>
+<img src="Assets/logo.gif" alt="Virtual Try-On Studio Logo" width="120"/>
 <br><br>
-<img src="assets/hero_banner.svg" alt="Virtual Try-On Studio Banner" width="1000"/>
+<img src="Assets/hero_banner.svg" alt="Virtual Try-On Studio Banner" width="1000"/>
 
 <br><br>
 
-<img src="[https://img.shields.io/badge/version-1.0.0-383b42?style=flat&logoColor=8b949e](https://img.shields.io/badge/version-1.0.0-383b42?style=flat&logoColor=8b949e)" alt="Version 1.0.0"/>&nbsp;<a href="#"><img src="[https://img.shields.io/badge/Frontend-React_%7C_Tailwind-383b42?style=flat&logo=react&logoColor=61DAFB](https://img.shields.io/badge/Frontend-React_%7C_Tailwind-383b42?style=flat&logo=react&logoColor=61DAFB)" alt="React"/></a>&nbsp;<a href="#"><img src="[https://img.shields.io/badge/Backend-Supabase_Edge-383b42?style=flat&logo=supabase&logoColor=3ECF8E](https://img.shields.io/badge/Backend-Supabase_Edge-383b42?style=flat&logo=supabase&logoColor=3ECF8E)" alt="Supabase"/></a>&nbsp;<a href="#"><img src="[https://img.shields.io/badge/Deployment-Vercel-383b42?style=flat&logo=vercel&logoColor=ffffff](https://img.shields.io/badge/Deployment-Vercel-383b42?style=flat&logo=vercel&logoColor=ffffff)" alt="Vercel"/></a>
+<img src="https://img.shields.io/badge/version-1.0.0-383b42?style=flat&logoColor=8b949e" alt="Version 1.0.0"/>&nbsp;<a href="#"><img src="https://img.shields.io/badge/Frontend-React_%7C_Tailwind-383b42?style=flat&logo=react&logoColor=61DAFB" alt="React"/></a>&nbsp;<a href="#"><img src="https://img.shields.io/badge/Backend-Supabase_Edge-383b42?style=flat&logo=supabase&logoColor=3ECF8E" alt="Supabase"/></a>&nbsp;<a href="#"><img src="https://img.shields.io/badge/Deployment-Vercel-383b42?style=flat&logo=vercel&logoColor=ffffff" alt="Vercel"/></a>
 
 **Transforming E-Commerce. Visualize apparel instantly. Seamlessly styled.** <br>
 <sub>*A modern, high-performance virtual try-on and style recommendation platform.*</sub>
