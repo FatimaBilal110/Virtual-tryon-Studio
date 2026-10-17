@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="public/Assets/logo.gif" alt="Virtual Try-On Studio Logo" width="120"/>
-<br><br>
 <img src="public/Assets/hero_banner.svg" alt="Virtual Try-On Studio Banner" width="1000"/>
 
 <br><br>
@@ -13,9 +11,6 @@
 
 </div>
 
-<div align="center">
-<a href="#architecture"><img src="assets/architecture.svg" alt="Virtual Try-On Architecture Flow" width="900"/></a>
-</div>
 
 ## Quick Start — Local Environment Setup
 
