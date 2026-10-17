@@ -11,6 +11,9 @@
 
 </div>
 
+<div align="center">
+<a href="#architecture"><img src="assets/architecture.svg" alt="Virtual Try-On Architecture Flow" width="900"/></a>
+</div>
 
 ## Quick Start — Local Environment Setup
 
