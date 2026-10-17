@@ -1,44 +1,50 @@
-import { NavLink } from "react-router-dom";
-import { Sparkles, Shirt, Palette, UserSquare2 } from "lucide-react";
+import { Link, NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { SITE } from "@/lib/site";
 
 const links = [
-  { to: "/", label: "Try-On", icon: Shirt },
-  { to: "/style", label: "Style AI", icon: Palette },
-  { to: "/ghost", label: "Ghost Mannequin", icon: UserSquare2 },
+  { to: "/", label: "Try-on" },
+  { to: "/style", label: "Color match" },
+  { to: "/ghost", label: "Model shots" },
 ];
 
 export const Navbar = () => {
   return (
-    <nav className="sticky top-0 z-40 backdrop-blur-md bg-background/70 border-b border-border">
-      <div className="container max-w-6xl flex items-center justify-between h-14">
-        <NavLink to="/" className="flex items-center gap-2 font-semibold">
-          <div className="p-1.5 rounded-lg bg-gradient-primary shadow-glow">
-            <Sparkles className="w-3.5 h-3.5 text-primary-foreground" />
-          </div>
-          <span className="text-gradient">VTO Studio</span>
-        </NavLink>
-        <div className="flex items-center gap-1">
-          {links.map(({ to, label, icon: Icon }) => (
+    <header className="glass sticky top-0 z-40 rounded-none border-x-0 border-t-0">
+      <div className="container flex flex-col gap-3 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+        <Link to="/" className="flex items-center gap-3 no-underline" aria-label={`${SITE.name} home`}>
+          {/* Keep your VTO Logo image */}
+          <img src="/logo.png" alt="Logo" className="h-10 w-auto object-contain" />
+          
+          {/* Replace the long image with styled text */}
+          <h1 
+            className="font-display text-2xl font-bold tracking-tight hidden sm:block"
+            style={{ color: '#432f11' }} // Apply your specific gold color
+          >
+            Virtual Try-On Studio
+          </h1>
+        </Link>
+        
+        <nav aria-label="Main" className="-mx-1 flex items-center gap-1 overflow-x-auto">
+          {links.map(({ to, label }) => (
             <NavLink
               key={to}
               to={to}
               end={to === "/"}
               className={({ isActive }) =>
                 cn(
-                  "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs md:text-sm font-medium transition-smooth",
+                  "whitespace-nowrap rounded-lg px-3.5 py-2 text-sm font-medium no-underline transition-colors",
                   isActive
-                    ? "bg-gradient-primary text-primary-foreground shadow-soft"
-                    : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                    ? "bg-card/90 text-foreground shadow-sm"
+                    : "text-muted-foreground hover:bg-card/60 hover:text-foreground"
                 )
               }
             >
-              <Icon className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline">{label}</span>
+              {label}
             </NavLink>
           ))}
-        </div>
+        </nav>
       </div>
-    </nav>
+    </header>
   );
 };

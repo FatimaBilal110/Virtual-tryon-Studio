@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Sparkles, Loader2, Wand2, Palette, ShirtIcon, ArrowRight } from "lucide-react";
+import { Loader2, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ImageDropzone } from "@/components/ImageDropzone";
-import { Navbar } from "@/components/Navbar";
+import { Layout } from "@/components/Layout";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
@@ -43,7 +43,7 @@ const Style = () => {
       if (error) throw error;
       if (data?.error) throw new Error(data.error);
       setRec(data);
-      toast.success("Recommendations ready!");
+      toast.success("Recommendations ready");
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Analysis failed");
     } finally {
@@ -52,41 +52,45 @@ const Style = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
-      <Navbar />
-      <div className="bg-gradient-hero">
-        <header className="container max-w-6xl pt-10 pb-8 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-card/60 backdrop-blur border border-border shadow-soft mb-6">
-            <Palette className="w-3.5 h-3.5 text-primary" />
-            <span className="text-xs font-medium tracking-wide">AI Color Stylist</span>
+    <Layout title="Color match">
+      <div className="container space-y-12 mt-5">
+        {/* Single wide glass card with title, description, and your banner image */}
+        <section className="glass rounded-3xl p-8 md:p-12 space-y-8">
+          <div className="grid gap-8 lg:grid-cols-2 items-center">
+            <div className="space-y-4">
+              <h1 className="text-4xl md:text-5xl font-display font-bold tracking-tight">
+                Find colors that suit your skin tone
+              </h1>
+              <p className="text-muted-foreground leading-relaxed">
+                Add a clear photo taken in daylight and choose the outfit you have in mind. The tool names a skin tone category and suggests three colors, each with a short reason. Pick one to carry it into the try-on.
+              </p>
+            </div>
+            <div>
+              <img 
+                src="/Style-banner.png" 
+                alt="Color match showcase" 
+                className="w-full max-h-[360px] object-cover rounded-2xl shadow-sm"
+              />
+            </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-            Style <span className="text-gradient">Recommendations</span>
-          </h1>
-          <p className="text-base text-muted-foreground max-w-xl mx-auto">
-            Upload your photo and discover the colors that flatter your skin tone the most.
-          </p>
-        </header>
-      </div>
+        </section>
 
-      <main className="container max-w-4xl pb-16">
-        <section className="bg-card rounded-3xl border border-border shadow-elegant p-6 md:p-10">
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
+        <section aria-label="Photo and outfit" className="glass rounded-2xl p-5 md:p-8">
+          <div className="grid gap-8 md:grid-cols-2">
             <ImageDropzone
               label="Your photo"
-              hint="Clear daylight selfie works best"
+              hint="A daylight selfie works best"
               value={photo}
               onChange={setPhoto}
               cameraFacing="user"
             />
-            <div className="space-y-4">
+            <div className="space-y-5">
               <div className="space-y-2">
-                <label className="text-sm font-medium flex items-center gap-2">
-                  <ShirtIcon className="w-4 h-4 text-primary" />
+                <label htmlFor="outfit" className="text-sm font-medium">
                   Outfit type
                 </label>
                 <Select value={outfit} onValueChange={setOutfit}>
-                  <SelectTrigger className="h-12 rounded-xl">
+                  <SelectTrigger id="outfit" className="h-11">
                     <SelectValue placeholder="Choose an outfit type" />
                   </SelectTrigger>
                   <SelectContent>
@@ -96,16 +100,11 @@ const Style = () => {
                   </SelectContent>
                 </Select>
               </div>
-              <Button
-                onClick={analyze}
-                disabled={!canRun}
-                size="lg"
-                className="w-full h-12 rounded-xl bg-gradient-primary hover:opacity-90 shadow-elegant text-primary-foreground font-semibold transition-smooth disabled:opacity-50"
-              >
+              <Button onClick={analyze} disabled={!canRun} size="lg" className="h-12 w-full text-base">
                 {loading ? (
-                  <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Analyzing…</>
+                  <><Loader2 className="h-4 w-4 animate-spin" /> Analyzing</>
                 ) : (
-                  <><Wand2 className="w-4 h-4 mr-2" /> Get Recommendations</>
+                  "Get color suggestions"
                 )}
               </Button>
             </div>
@@ -113,43 +112,43 @@ const Style = () => {
         </section>
 
         {rec && (
-          <section className="mt-8 bg-card rounded-3xl border border-border shadow-elegant p-6 md:p-10">
-            <div className="flex items-center gap-2 mb-2">
-              <Sparkles className="w-5 h-5 text-primary" />
-              <h2 className="text-xl font-semibold">Your color palette</h2>
+          <section aria-labelledby="palette-heading" aria-live="polite" className="space-y-5">
+            <h2 id="palette-heading" className="text-4xl">Your colors</h2>
+            <div className="space-y-1 text-muted-foreground">
+              <p>
+                Detected skin tone: <span className="font-medium capitalize text-foreground">{rec.skinTone}</span>
+              </p>
+              <p>{rec.explanation}</p>
             </div>
-            <p className="text-sm text-muted-foreground mb-2">
-              Detected skin tone: <span className="font-medium text-foreground capitalize">{rec.skinTone}</span>
-            </p>
-            <p className="text-sm text-muted-foreground mb-6">{rec.explanation}</p>
 
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
               {rec.colors.map((c, i) => (
-                <div key={i} className="rounded-2xl border border-border overflow-hidden shadow-soft flex flex-col">
+                <div key={i} className="flex flex-col overflow-hidden glass rounded-2xl">
                   <div
-                    className="aspect-[4/3] w-full"
+                    className="aspect-[4/3] w-full border-b border-border"
                     style={{ backgroundColor: c.hex }}
-                    aria-label={c.name}
+                    role="img"
+                    aria-label={`${c.name} swatch`}
                   />
-                  <div className="p-4 flex-1 flex flex-col">
-                    <div className="flex items-center justify-between mb-1">
-                      <p className="font-semibold">{c.name}</p>
+                  <div className="flex flex-1 flex-col p-4">
+                    <div className="mb-1 flex items-center justify-between gap-2">
+                      <p className="font-medium">{c.name}</p>
                       <code className="text-xs text-muted-foreground">{c.hex}</code>
                     </div>
-                    <p className="text-xs text-muted-foreground flex-1">{c.reason}</p>
+                    <p className="flex-1 text-sm text-muted-foreground">{c.reason}</p>
                     <Button
                       size="sm"
                       variant="outline"
-                      className="mt-3 rounded-lg"
+                      className="mt-4"
                       onClick={() => {
                         localStorage.setItem("vto_selectedColor", c.hex);
                         localStorage.setItem("vto_selectedColorName", c.name);
                         localStorage.setItem("vto_selectedOutfit", outfit);
-                        toast.success(`${c.name} ready in Try-On`);
+                        toast.success(`${c.name} ready in Try-on`);
                         navigate("/");
                       }}
                     >
-                      Try-On with this color <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
+                      Try on this color <ArrowRight className="h-4 w-4" />
                     </Button>
                   </div>
                 </div>
@@ -157,8 +156,8 @@ const Style = () => {
             </div>
           </section>
         )}
-      </main>
-    </div>
+      </div>
+    </Layout>
   );
 };
 

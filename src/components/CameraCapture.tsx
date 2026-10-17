@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Camera, RotateCcw, Check, X, SwitchCamera, AlertCircle } from "lucide-react";
+import { Camera, RotateCcw, Check, X, SwitchCamera } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
@@ -120,17 +120,14 @@ export const CameraCapture = ({ open, onClose, onCapture, defaultFacing = "user"
 
   return (
     <Dialog open={open} onOpenChange={(o) => !o && onClose()}>
-      <DialogContent className="max-w-2xl p-0 gap-0 overflow-hidden rounded-2xl">
+      <DialogContent className="max-w-2xl gap-0 overflow-hidden rounded-2xl p-0">
         <DialogTitle className="sr-only">Camera capture</DialogTitle>
         <DialogDescription className="sr-only">Use your camera to take a photo</DialogDescription>
 
         <div className="relative bg-black aspect-[3/4] sm:aspect-video w-full">
           {error ? (
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 gap-3 text-white">
-              <div className="p-3 rounded-full bg-destructive/20">
-                <AlertCircle className="w-6 h-6 text-destructive-foreground" />
-              </div>
-              <p className="text-sm max-w-xs">{error}</p>
+            <div role="alert" className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center text-white">
+              <p className="max-w-xs text-sm">{error}</p>
             </div>
           ) : captured ? (
             <img src={captured} alt="Captured preview" className="w-full h-full object-contain" />
@@ -149,7 +146,7 @@ export const CameraCapture = ({ open, onClose, onCapture, defaultFacing = "user"
             <button
               type="button"
               onClick={switchCamera}
-              className="absolute top-3 right-3 p-2.5 rounded-full bg-black/50 backdrop-blur text-white hover:bg-black/70 transition-smooth"
+              className="absolute right-3 top-3 rounded-lg bg-black/60 p-2.5 text-white transition-colors hover:bg-black/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
               aria-label="Switch camera"
             >
               <SwitchCamera className="w-4 h-4" />
@@ -158,34 +155,34 @@ export const CameraCapture = ({ open, onClose, onCapture, defaultFacing = "user"
 
           {starting && !captured && !error && (
             <div className="absolute inset-0 flex items-center justify-center text-white/80 text-sm">
-              Starting camera…
+              Starting camera
             </div>
           )}
         </div>
 
-        <div className="p-4 bg-card flex items-center justify-center gap-3">
+        <div className="flex items-center justify-center gap-3 bg-card p-4">
           {error ? (
-            <Button onClick={onClose} variant="outline" className="rounded-xl">
+            <Button onClick={onClose} variant="outline">
               Close
             </Button>
           ) : captured ? (
             <>
-              <Button onClick={retake} variant="outline" className="rounded-xl">
+              <Button onClick={retake} variant="outline">
                 <RotateCcw className="w-4 h-4 mr-2" /> Retake
               </Button>
-              <Button onClick={confirm} className="rounded-xl bg-gradient-primary text-primary-foreground">
+              <Button onClick={confirm}>
                 <Check className="w-4 h-4 mr-2" /> Use photo
               </Button>
             </>
           ) : (
             <>
-              <Button onClick={onClose} variant="ghost" className="rounded-xl">
+              <Button onClick={onClose} variant="ghost">
                 <X className="w-4 h-4 mr-2" /> Cancel
               </Button>
               <Button
                 onClick={capture}
                 disabled={starting}
-                className="rounded-xl bg-gradient-primary text-primary-foreground px-6"
+                className="px-6"
               >
                 <Camera className="w-4 h-4 mr-2" /> Capture
               </Button>

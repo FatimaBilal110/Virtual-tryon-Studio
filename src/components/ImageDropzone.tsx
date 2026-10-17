@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { Upload, X, ImageIcon, Camera } from "lucide-react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { Upload, X, Camera } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { CameraCapture } from "./CameraCapture";
 
@@ -46,6 +46,7 @@ export const ImageDropzone = ({ label, hint, value, onChange, cameraFacing = "en
   const [cameraOpen, setCameraOpen] = useState(false);
   const [cameraSupported, setCameraSupported] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const labelId = useId();
 
   useEffect(() => {
     setCameraSupported(
@@ -84,61 +85,57 @@ export const ImageDropzone = ({ label, hint, value, onChange, cameraFacing = "en
 
   return (
     <div className="space-y-2">
-      <div className="flex items-baseline justify-between">
-        <label className="text-sm font-medium text-foreground">{label}</label>
-        <span className="text-xs text-muted-foreground">{hint}</span>
+      <div className="flex flex-wrap items-baseline justify-between gap-x-4">
+        <span id={labelId} className="text-sm font-medium text-foreground">{label}</span>
+        <span className="text-sm text-muted-foreground">{hint}</span>
       </div>
 
       {value ? (
-        <div className="relative group rounded-2xl overflow-hidden border border-border shadow-soft aspect-[4/5] bg-muted">
-          <img src={value} alt={label} className="w-full h-full object-cover" />
+        <div className="relative h-72 overflow-hidden rounded-xl border border-bronze/40 bg-muted">
+          <img src={value} alt={label} className="h-full w-full object-cover" />
           <button
             type="button"
             onClick={() => onChange(null)}
-            className="absolute top-3 right-3 p-2 rounded-full bg-background/90 backdrop-blur border border-border opacity-0 group-hover:opacity-100 transition-smooth hover:bg-destructive hover:text-destructive-foreground"
-            aria-label="Remove image"
+            className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-lg border border-white/70 bg-card/90 px-2.5 py-1.5 text-xs font-medium text-foreground shadow-sm hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            aria-label={`Remove ${label.toLowerCase()}`}
           >
-            <X className="w-4 h-4" />
+            <X className="h-3.5 w-3.5" /> Remove
           </button>
         </div>
       ) : (
         <div
+          role="group"
+          aria-labelledby={labelId}
           onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
           onDragLeave={() => setIsDragging(false)}
           onDrop={onDrop}
           className={cn(
-            "w-full aspect-[4/5] rounded-2xl border-2 border-dashed flex flex-col items-center justify-center gap-4 transition-smooth p-4",
-            "bg-card",
-            isDragging
-              ? "border-primary bg-primary/5 scale-[1.02]"
-              : "border-border"
+            "flex h-72 w-full flex-col items-center justify-center gap-5 rounded-xl border border-dashed bg-card/40 p-4 transition-colors",
+            isDragging ? "border-clay bg-card/80" : "border-bronze/60"
           )}
         >
-          <div className="p-4 rounded-full bg-gradient-primary shadow-glow">
-            {isDragging ? <Upload className="w-6 h-6 text-primary-foreground" /> : <ImageIcon className="w-6 h-6 text-primary-foreground" />}
-          </div>
-          <div className="text-center px-2">
+          <div className="text-center">
             <p className="text-sm font-medium text-foreground">
-              {isDragging ? "Drop it here" : "Add a photo"}
+              {isDragging ? "Drop the photo here" : "Drag a photo here"}
             </p>
-            <p className="text-xs text-muted-foreground mt-1">PNG, JPG up to 8MB</p>
+            <p className="mt-1 text-sm text-muted-foreground">PNG or JPG, up to 8MB</p>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-2 w-full">
+          <div className="flex flex-wrap items-center justify-center gap-2">
             <button
               type="button"
               onClick={() => inputRef.current?.click()}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-secondary hover:bg-secondary/70 text-secondary-foreground text-xs font-medium transition-smooth"
+              className="inline-flex h-10 items-center gap-2 rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground shadow-[0_8px_18px_-10px_hsl(22_45%_22%/0.8)] transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
             >
-              <Upload className="w-3.5 h-3.5" /> Upload
+              <Upload className="h-4 w-4" /> Upload a file
             </button>
             {cameraSupported && (
               <button
                 type="button"
                 onClick={() => setCameraOpen(true)}
-                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-gradient-primary text-primary-foreground text-xs font-medium shadow-soft hover:opacity-90 transition-smooth"
+                className="inline-flex h-10 items-center gap-2 rounded-lg border border-input bg-card/70 px-4 text-sm font-medium text-foreground transition-colors hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
               >
-                <Camera className="w-3.5 h-3.5" /> Use camera
+                <Camera className="h-4 w-4" /> Use camera
               </button>
             )}
           </div>
@@ -150,6 +147,7 @@ export const ImageDropzone = ({ label, hint, value, onChange, cameraFacing = "en
         type="file"
         accept="image/*"
         className="hidden"
+        aria-labelledby={labelId}
         onChange={(e) => {
           const file = e.target.files?.[0];
           if (file) handleFile(file);
@@ -157,7 +155,7 @@ export const ImageDropzone = ({ label, hint, value, onChange, cameraFacing = "en
         }}
       />
 
-      {error && <p className="text-xs text-destructive">{error}</p>}
+      {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
 
       {cameraSupported && (
         <CameraCapture

@@ -2,72 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+  Theme: champagne and sand surfaces, frosted glass panels, bronze and rust accents.
+  Palette taken from the brand reference images.
+  Tokens are HSL triplets used as hsl(var(--token)).
+*/
 @layer base {
   :root {
-    --background: 30 20% 98%;
-    --foreground: 240 10% 8%;
+    color-scheme: light;
 
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 8%;
+    --background: 32 32% 83%;        /* sand */
+    --foreground: 26 33% 15%;        /* espresso */
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 8%;
+    --card: 36 62% 95%;              /* champagne, used with alpha for glass */
+    --card-foreground: 26 33% 15%;
 
-    --primary: 270 70% 55%;
-    --primary-foreground: 0 0% 100%;
-    --primary-glow: 290 80% 65%;
+    --popover: 36 58% 95%;
+    --popover-foreground: 26 33% 15%;
 
-    --secondary: 280 30% 96%;
-    --secondary-foreground: 270 50% 25%;
+    --primary: 22 45% 28%;           /* deep bronze brown */
+    --primary-foreground: 36 62% 95%;
 
-    --muted: 280 20% 95%;
-    --muted-foreground: 240 5% 45%;
+    --secondary: 30 34% 78%;
+    --secondary-foreground: 26 33% 15%;
 
-    --accent: 330 80% 65%;
-    --accent-foreground: 0 0% 100%;
+    --muted: 32 30% 80%;
+    --muted-foreground: 25 22% 28%;
 
-    --destructive: 0 84% 60%;
+    --accent: 30 40% 80%;
+    --accent-foreground: 26 33% 15%;
+
+    --destructive: 0 62% 36%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 280 20% 90%;
-    --input: 280 20% 92%;
-    --ring: 270 70% 55%;
+    --border: 30 26% 70%;
+    --input: 27 24% 52%;
+    --ring: 15 83% 30%;
+
+    --clay: 15 83% 30%;              /* rust, for numerals and links */
+    --bronze: 26 31% 52%;            /* decorative lines */
 
     --radius: 0.875rem;
-
-    --gradient-primary: linear-gradient(135deg, hsl(270 70% 55%), hsl(330 80% 65%));
-    --gradient-subtle: linear-gradient(180deg, hsl(280 40% 98%), hsl(320 30% 96%));
-    --gradient-hero: radial-gradient(ellipse at top, hsl(290 80% 75% / 0.3), transparent 60%),
-                    radial-gradient(ellipse at bottom right, hsl(330 80% 70% / 0.25), transparent 60%);
-
-    --shadow-elegant: 0 20px 60px -20px hsl(270 70% 55% / 0.35);
-    --shadow-soft: 0 4px 20px -4px hsl(270 30% 50% / 0.15);
-    --shadow-glow: 0 0 40px hsl(290 80% 65% / 0.4);
-
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .dark {
-    --background: 270 20% 8%;
-    --foreground: 280 20% 96%;
-    --card: 270 20% 11%;
-    --card-foreground: 280 20% 96%;
-    --popover: 270 20% 11%;
-    --popover-foreground: 280 20% 96%;
-    --primary: 290 80% 65%;
-    --primary-foreground: 270 30% 10%;
-    --primary-glow: 320 80% 70%;
-    --secondary: 270 15% 18%;
-    --secondary-foreground: 280 20% 96%;
-    --muted: 270 15% 18%;
-    --muted-foreground: 280 10% 65%;
-    --accent: 330 80% 65%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 70% 55%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 270 15% 20%;
-    --input: 270 15% 20%;
-    --ring: 290 80% 65%;
   }
 }
 
@@ -75,24 +50,58 @@
   * {
     @apply border-border;
   }
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
   body {
-    @apply bg-background text-foreground antialiased;
-    font-feature-settings: "ss01", "cv11";
+    @apply bg-background font-sans text-foreground antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-display font-semibold tracking-tight;
+  }
+  a {
+    @apply underline-offset-4;
   }
 }
 
-@layer utilities {
-  .bg-gradient-primary { background: var(--gradient-primary); }
-  .bg-gradient-subtle { background: var(--gradient-subtle); }
-  .bg-gradient-hero { background: var(--gradient-hero); }
-  .shadow-elegant { box-shadow: var(--shadow-elegant); }
-  .shadow-soft { box-shadow: var(--shadow-soft); }
-  .shadow-glow { box-shadow: var(--shadow-glow); }
-  .transition-smooth { transition: var(--transition-smooth); }
-  .text-gradient {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+@layer components {
+  /* Frosted panel. Falls back to a mostly opaque surface without backdrop-filter. */
+  .glass {
+    background: hsl(var(--card) / 0.86);
+    border: 1px solid hsl(0 0% 100% / 0.65);
+    box-shadow:
+      0 14px 34px -18px hsl(24 40% 22% / 0.35),
+      inset 0 1px 0 hsl(0 0% 100% / 0.7);
+  }
+  .glass-strong {
+    background: hsl(var(--card) / 0.9);
+    border: 1px solid hsl(0 0% 100% / 0.7);
+    box-shadow:
+      0 24px 60px -28px hsl(24 40% 22% / 0.45),
+      inset 0 1px 0 hsl(0 0% 100% / 0.8);
+  }
+  @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+    .glass {
+      background: hsl(var(--card) / 0.55);
+      -webkit-backdrop-filter: blur(16px) saturate(1.15);
+      backdrop-filter: blur(16px) saturate(1.15);
+    }
+    .glass-strong {
+      background: hsl(var(--card) / 0.62);
+      -webkit-backdrop-filter: blur(22px) saturate(1.2);
+      backdrop-filter: blur(22px) saturate(1.2);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

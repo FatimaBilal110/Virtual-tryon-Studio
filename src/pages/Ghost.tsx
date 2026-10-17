@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Sparkles, Loader2, Wand2, Download, RefreshCw, UserSquare2 } from "lucide-react";
+import { Loader2, Download, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ImageDropzone } from "@/components/ImageDropzone";
-import { Navbar } from "@/components/Navbar";
+import { Layout } from "@/components/Layout";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
@@ -28,7 +28,7 @@ const Ghost = () => {
       if (data?.error) throw new Error(data.error);
       if (!data?.image) throw new Error("No image returned");
       setResult(data.image);
-      toast.success("Model shot generated!");
+      toast.success("Model shot generated");
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Generation failed");
     } finally {
@@ -44,38 +44,42 @@ const Ghost = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
-      <Navbar />
-      <div className="bg-gradient-hero">
-        <header className="container max-w-6xl pt-10 pb-8 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-card/60 backdrop-blur border border-border shadow-soft mb-6">
-            <UserSquare2 className="w-3.5 h-3.5 text-primary" />
-            <span className="text-xs font-medium tracking-wide">Ghost Mannequin → Model</span>
+    <Layout title="Model shots">
+      <div className="container space-y-12 mt-5">
+        <section className="glass rounded-3xl p-8 md:p-12">
+          <div className="grid gap-8 lg:grid-cols-2 items-center">
+            <div className="space-y-4">
+              <h1 className="text-4xl md:text-5xl font-display font-bold tracking-tight">
+                Turn a garment photo into a model shot
+              </h1>
+              <p className="text-muted-foreground leading-relaxed">
+                Add a photo of a garment on a hanger, laid flat or on a mannequin. Choose the model type and the studio generates a catalog style image of the garment being worn.
+              </p>
+            </div>
+            <div>
+              <img 
+                src="/Ghost-banner.png" 
+                alt="Model shots showcase" 
+                className="w-full h-auto rounded-2xl object-cover shadow-sm"
+              />
+            </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-            Catalog-Ready <span className="text-gradient">Model Shots</span>
-          </h1>
-          <p className="text-base text-muted-foreground max-w-xl mx-auto">
-            Turn flat-lay, hanger, or mannequin photos into studio-quality images on a realistic model.
-          </p>
-        </header>
-      </div>
+        </section>
 
-      <main className="container max-w-4xl pb-16">
-        <section className="bg-card rounded-3xl border border-border shadow-elegant p-6 md:p-10">
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
+        <section aria-label="Garment and model options" className="glass rounded-2xl p-5 md:p-8">
+          <div className="grid gap-8 md:grid-cols-2">
             <ImageDropzone
               label="Garment photo"
-              hint="Hanger, flat lay, or mannequin"
+              hint="Hanger, flat lay or mannequin"
               value={garment}
               onChange={setGarment}
               cameraFacing="environment"
             />
-            <div className="space-y-4">
+            <div className="space-y-5">
               <div className="space-y-2">
-                <label className="text-sm font-medium">Gender</label>
+                <label htmlFor="gender" className="text-sm font-medium">Gender</label>
                 <Select value={gender} onValueChange={setGender}>
-                  <SelectTrigger className="h-12 rounded-xl"><SelectValue /></SelectTrigger>
+                  <SelectTrigger id="gender" className="h-11"><SelectValue /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="female">Female</SelectItem>
                     <SelectItem value="male">Male</SelectItem>
@@ -83,9 +87,9 @@ const Ghost = () => {
                 </Select>
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium">Body type</label>
+                <label htmlFor="body-type" className="text-sm font-medium">Body type</label>
                 <Select value={bodyType} onValueChange={setBodyType}>
-                  <SelectTrigger className="h-12 rounded-xl"><SelectValue /></SelectTrigger>
+                  <SelectTrigger id="body-type" className="h-11"><SelectValue /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="slim">Slim</SelectItem>
                     <SelectItem value="regular">Regular</SelectItem>
@@ -93,16 +97,11 @@ const Ghost = () => {
                   </SelectContent>
                 </Select>
               </div>
-              <Button
-                onClick={generate}
-                disabled={!canRun}
-                size="lg"
-                className="w-full h-12 rounded-xl bg-gradient-primary hover:opacity-90 shadow-elegant text-primary-foreground font-semibold transition-smooth disabled:opacity-50"
-              >
+              <Button onClick={generate} disabled={!canRun} size="lg" className="h-12 w-full text-base">
                 {loading ? (
-                  <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Generating…</>
+                  <><Loader2 className="h-4 w-4 animate-spin" /> Generating</>
                 ) : (
-                  <><Wand2 className="w-4 h-4 mr-2" /> Generate Model Shot</>
+                  "Generate model shot"
                 )}
               </Button>
             </div>
@@ -110,40 +109,34 @@ const Ghost = () => {
         </section>
 
         {(loading || result) && (
-          <section className="mt-8 bg-card rounded-3xl border border-border shadow-elegant p-6 md:p-10">
-            <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-primary" /> Studio result
-            </h2>
+          <section aria-labelledby="result-heading" aria-live="polite" className="space-y-5">
+            <h2 id="result-heading" className="text-4xl">Your model shot</h2>
             {loading && (
-              <div className="aspect-[4/5] max-w-md mx-auto rounded-2xl bg-gradient-primary/10 border-2 border-dashed border-primary/30 flex flex-col items-center justify-center gap-4 animate-pulse">
-                <div className="p-5 rounded-full bg-gradient-primary shadow-glow">
-                  <Loader2 className="w-8 h-8 text-primary-foreground animate-spin" />
-                </div>
-                <div className="text-center px-6">
-                  <p className="font-medium">Building your model shot…</p>
-                  <p className="text-sm text-muted-foreground mt-1">10–20 seconds</p>
-                </div>
+              <div className="flex aspect-[4/5] max-w-md flex-col items-center justify-center gap-3 glass rounded-2xl px-6 text-center">
+                <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+                <p className="font-medium">Generating your image</p>
+                <p className="text-sm text-muted-foreground">Keep this tab open until it finishes.</p>
               </div>
             )}
             {result && !loading && (
-              <div className="space-y-6">
-                <div className="max-w-md mx-auto rounded-2xl overflow-hidden shadow-elegant border border-border">
-                  <img src={result} alt="Generated model" className="w-full" />
+              <div className="space-y-5">
+                <div className="max-w-md overflow-hidden glass rounded-2xl">
+                  <img src={result} alt="Generated model shot" className="w-full" />
                 </div>
-                <div className="flex flex-wrap gap-3 justify-center">
-                  <Button onClick={() => download(result)} className="rounded-xl">
-                    <Download className="w-4 h-4 mr-2" /> Download
+                <div className="flex flex-wrap gap-3">
+                  <Button onClick={() => download(result)}>
+                    <Download className="h-4 w-4" /> Download
                   </Button>
-                  <Button onClick={generate} variant="outline" className="rounded-xl">
-                    <RefreshCw className="w-4 h-4 mr-2" /> Regenerate
+                  <Button onClick={generate} variant="outline">
+                    <RefreshCw className="h-4 w-4" /> Regenerate
                   </Button>
                 </div>
               </div>
             )}
           </section>
         )}
-      </main>
-    </div>
+      </div>
+    </Layout>
   );
 };
 

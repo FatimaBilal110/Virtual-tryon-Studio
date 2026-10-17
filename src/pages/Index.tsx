@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { Sparkles, Download, RefreshCw, Loader2, Wand2, ShirtIcon, Palette, X } from "lucide-react";
+import { Download, RefreshCw, Loader2, X, Camera, Shirt } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ImageDropzone } from "@/components/ImageDropzone";
-import { Navbar } from "@/components/Navbar";
+import { Layout } from "@/components/Layout";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
@@ -17,37 +17,27 @@ const OUTFITS = [
   { value: "pants", label: "Pants" },
 ];
 
-
-
 const Index = () => {
   const [personImage, setPersonImage] = useState<string | null>(null);
   const [clothImage, setClothImage] = useState<string | null>(null);
   const [outfit, setOutfit] = useState<string>("");
   const [color, setColor] = useState<string>("");
   const [colorName, setColorName] = useState<string>("");
-  const [garmentFromGhost, setGarmentFromGhost] = useState(false);
   const [result, setResult] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const c = localStorage.getItem("vto_selectedColor");
-    const cn = localStorage.getItem("vto_selectedColorName");
-    const o = localStorage.getItem("vto_selectedOutfit");
-    const g = localStorage.getItem("vto_garmentImage");
-    if (c) { setColor(c); localStorage.removeItem("vto_selectedColor"); }
-    if (cn) { setColorName(cn); localStorage.removeItem("vto_selectedColorName"); }
-    if (o) { setOutfit(o); localStorage.removeItem("vto_selectedOutfit"); }
-    if (g) {
-      setClothImage(g);
-      setGarmentFromGhost(true);
-      localStorage.removeItem("vto_garmentImage");
-    }
-    if (c || g) {
-      toast.success(g ? "Garment loaded from Ghost Mannequin" : `Color ${cn || c} loaded from Style AI`);
+    const savedColor = localStorage.getItem("vto_selectedColor");
+    const savedName = localStorage.getItem("vto_selectedColorName");
+    const savedOutfit = localStorage.getItem("vto_selectedOutfit");
+    if (savedColor) { setColor(savedColor); localStorage.removeItem("vto_selectedColor"); }
+    if (savedName) { setColorName(savedName); localStorage.removeItem("vto_selectedColorName"); }
+    if (savedOutfit) { setOutfit(savedOutfit); localStorage.removeItem("vto_selectedOutfit"); }
+    if (savedColor) {
+      toast.success(`Color ${savedName || savedColor} loaded from Color match`);
     }
   }, []);
 
-  // Need either a cloth image OR a color to generate
   const canGenerate = personImage && outfit && (clothImage || color) && !loading;
 
   const generate = async () => {
@@ -63,7 +53,7 @@ const Index = () => {
       if (!data?.image) throw new Error("No image returned");
 
       setResult(data.image);
-      toast.success("Try-on generated!");
+      toast.success("Try-on generated");
     } catch (e) {
       const msg = e instanceof Error ? e.message : "Generation failed";
       toast.error(msg);
@@ -80,57 +70,85 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
-      <Navbar />
-      <div className="bg-gradient-hero">
-        <header className="container max-w-6xl pt-12 pb-8 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-card/60 backdrop-blur border border-border shadow-soft mb-6">
-            <Sparkles className="w-3.5 h-3.5 text-primary" />
-            <span className="text-xs font-medium tracking-wide">AI Powered Virtual Fitting</span>
-          </div>
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">
-            Virtual Try-On <span className="text-gradient">Studio</span>
-          </h1>
-          <p className="text-base md:text-lg text-muted-foreground max-w-xl mx-auto">
-            Upload a photo and any fabric — see yourself wearing custom outfits in seconds.
-          </p>
-        </header>
-      </div>
-
-      <main className="container max-w-6xl pb-16">
-        <section className="bg-card rounded-3xl border border-border shadow-elegant p-6 md:p-10">
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
-            <ImageDropzone
-              label="Person photo"
-              hint="Full body works best"
-              value={personImage}
-              onChange={setPersonImage}
-              cameraFacing="user"
-            />
-            <div className="space-y-2">
-              <ImageDropzone
-                label={garmentFromGhost ? "Garment (from Ghost Mannequin)" : "Fabric or garment"}
-                hint={garmentFromGhost ? "Auto-loaded — replace if you want" : "Pattern, color, texture. Optional if a color is selected."}
-                value={clothImage}
-                onChange={(v) => { setClothImage(v); if (!v) setGarmentFromGhost(false); }}
-                cameraFacing="environment"
+    <Layout>
+      <div className="container space-y-12 mt-5">
+        <section className="glass rounded-3xl p-8 md:p-12 space-y-8">
+          <div className="grid gap-8 lg:grid-cols-2 items-center">
+            <div className="space-y-6">
+              <h1 className="text-4xl md:text-5xl font-display font-bold tracking-tight">
+                See the outfit on you before it is stitched
+              </h1>
+              <p className="text-muted-foreground leading-relaxed">
+                Add a photo of yourself and a photo of the fabric or garment. Choose a style, and a color if you want one. The studio generates one image of you wearing it.
+              </p>
+              <p className="text-xs text-muted-foreground">
+                The result is an AI generated image. Fit, drape and color are approximations, so check the real fabric before you order.
+              </p>
+              
+              <ul className="grid gap-3 sm:grid-cols-2 pt-2">
+                <li className="flex items-start gap-3 rounded-xl border border-white/60 bg-card/50 p-4">
+                  <Shirt className="mt-0.5 h-5 w-5 shrink-0 text-clay" aria-hidden="true" />
+                  <div>
+                    <p className="font-medium text-sm">Six outfit styles</p>
+                    <p className="text-xs text-muted-foreground">Shirt, frock, kurta, kameez, etc.</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3 rounded-xl border border-white/60 bg-card/50 p-4">
+                  <Camera className="mt-0.5 h-5 w-5 shrink-0 text-clay" aria-hidden="true" />
+                  <div>
+                    <p className="font-medium text-sm">Upload or camera</p>
+                    <p className="text-xs text-muted-foreground">Add file or snap in browser.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <img 
+                src="/Hero-banner.png" 
+                alt="Try-on showcase" 
+                className="w-full max-h-[450px] object-cover rounded-2xl shadow-sm"
               />
-              {garmentFromGhost && (
-                <div className="flex items-center gap-2 text-xs text-primary">
-                  <Sparkles className="w-3 h-3" /> Loaded from Ghost Mannequin
-                </div>
-              )}
             </div>
           </div>
+        </section>
 
-          <div className="grid md:grid-cols-2 gap-4 mb-6">
+        <section aria-labelledby="step-photos" className="space-y-5">
+          <h2 id="step-photos" className="text-4xl">
+            <span className="mr-3 text-clay">1</span>Add your photos
+          </h2>
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="glass rounded-2xl p-5">
+              <ImageDropzone
+                label="Your photo"
+                hint="Full body works best"
+                value={personImage}
+                onChange={setPersonImage}
+                cameraFacing="user"
+              />
+            </div>
+            <div className="glass rounded-2xl p-5">
+              <ImageDropzone
+                label="Fabric or garment"
+                hint="Optional if you pick a color"
+                value={clothImage}
+                onChange={setClothImage}
+                cameraFacing="environment"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section aria-labelledby="step-style" className="space-y-5">
+          <h2 id="step-style" className="text-4xl">
+            <span className="mr-3 text-clay">2</span>Choose the style and color
+          </h2>
+          <div className="grid gap-6 glass rounded-2xl p-5 md:grid-cols-2 md:p-6">
             <div className="space-y-2">
-              <label className="text-sm font-medium flex items-center gap-2">
-                <ShirtIcon className="w-4 h-4 text-primary" />
+              <label htmlFor="outfit" className="text-sm font-medium">
                 Outfit style
               </label>
               <Select value={outfit} onValueChange={setOutfit}>
-                <SelectTrigger className="h-12 rounded-xl">
+                <SelectTrigger id="outfit" className="h-11">
                   <SelectValue placeholder="Choose an outfit type" />
                 </SelectTrigger>
                 <SelectContent>
@@ -142,99 +160,83 @@ const Index = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium flex items-center gap-2">
-                <Palette className="w-4 h-4 text-primary" />
-                Selected color {colorName && <span className="text-xs text-muted-foreground font-normal">· from Style AI</span>}
+              <label htmlFor="color-hex" className="text-sm font-medium">
+                Color{" "}
+                {colorName && <span className="font-normal text-muted-foreground">({colorName}, from Color match)</span>}
               </label>
               <div className="flex gap-2">
-                <div className="relative">
-                  <Input
-                    type="color"
-                    value={color || "#cccccc"}
-                    onChange={(e) => { setColor(e.target.value); setColorName(""); }}
-                    className="h-12 w-14 rounded-xl p-1 cursor-pointer"
-                  />
-                </div>
                 <Input
+                  type="color"
+                  aria-label="Pick a color"
+                  value={/^#[0-9a-fA-F]{6}$/.test(color) ? color : "#cccccc"}
+                  onChange={(e) => { setColor(e.target.value); setColorName(""); }}
+                  className="h-11 w-14 cursor-pointer p-1"
+                />
+                <Input
+                  id="color-hex"
                   type="text"
                   value={color}
                   placeholder="#RRGGBB (optional)"
                   onChange={(e) => { setColor(e.target.value); setColorName(""); }}
-                  className="h-12 rounded-xl flex-1"
+                  className="h-11 flex-1"
                 />
                 {color && (
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="h-12 w-12 rounded-xl"
+                    className="h-11 w-11"
                     onClick={() => { setColor(""); setColorName(""); }}
                     aria-label="Clear color"
                   >
-                    <X className="w-4 h-4" />
+                    <X className="h-4 w-4" />
                   </Button>
                 )}
               </div>
             </div>
           </div>
 
-          <div className="flex justify-end">
-            <Button
-              onClick={generate}
-              disabled={!canGenerate}
-              size="lg"
-              className="h-12 rounded-xl bg-gradient-primary hover:opacity-90 shadow-elegant text-primary-foreground font-semibold px-8 transition-smooth disabled:opacity-50"
-            >
-              {loading ? (
-                <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Generating…</>
-              ) : (
-                <><Wand2 className="w-4 h-4 mr-2" /> Generate Try-On</>
-              )}
-            </Button>
-          </div>
+          <Button onClick={generate} disabled={!canGenerate} size="lg" className="h-12 w-full text-base sm:w-auto">
+            {loading ? (
+              <><Loader2 className="h-4 w-4 animate-spin" /> Generating</>
+            ) : (
+              "Generate try-on"
+            )}
+          </Button>
         </section>
 
         {(loading || result) && (
-          <section className="mt-8 bg-card rounded-3xl border border-border shadow-elegant p-6 md:p-10">
-            <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-primary" />
-              Your virtual try-on
+          <section aria-labelledby="step-result" aria-live="polite" className="space-y-5">
+            <h2 id="step-result" className="text-4xl">
+              <span className="mr-3 text-clay">3</span>Your try-on
             </h2>
 
             {loading && (
-              <div className="aspect-[4/5] max-w-md mx-auto rounded-2xl bg-gradient-primary/10 border-2 border-dashed border-primary/30 flex flex-col items-center justify-center gap-4 animate-pulse">
-                <div className="p-5 rounded-full bg-gradient-primary shadow-glow">
-                  <Loader2 className="w-8 h-8 text-primary-foreground animate-spin" />
-                </div>
-                <div className="text-center px-6">
-                  <p className="font-medium">Crafting your look…</p>
-                  <p className="text-sm text-muted-foreground mt-1">This usually takes 10–20 seconds</p>
-                </div>
+              <div className="flex aspect-[4/5] max-w-md flex-col items-center justify-center gap-3 glass rounded-2xl px-6 text-center">
+                <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+                <p className="font-medium">Generating your image</p>
+                <p className="text-sm text-muted-foreground">Keep this tab open until it finishes.</p>
               </div>
             )}
 
             {result && !loading && (
-              <div className="space-y-6">
-                <div className="max-w-md mx-auto rounded-2xl overflow-hidden shadow-elegant border border-border">
+              <div className="space-y-5">
+                <div className="max-w-md overflow-hidden glass rounded-2xl">
                   <img src={result} alt="Generated try-on" className="w-full" />
                 </div>
-                <div className="flex flex-wrap gap-3 justify-center">
-                  <Button onClick={() => download(result)} variant="default" className="rounded-xl">
-                    <Download className="w-4 h-4 mr-2" /> Download
+                <div className="flex flex-wrap gap-3">
+                  <Button onClick={() => download(result)}>
+                    <Download className="h-4 w-4" /> Download
                   </Button>
-                  <Button onClick={generate} variant="outline" className="rounded-xl">
-                    <RefreshCw className="w-4 h-4 mr-2" /> Regenerate
+                  <Button onClick={generate} variant="outline">
+                    <RefreshCw className="h-4 w-4" /> Regenerate
                   </Button>
                 </div>
               </div>
             )}
           </section>
         )}
-
-        <footer className="text-center text-xs text-muted-foreground mt-12">
-          Powered by Fatima Bilal · Images processed securely
-        </footer>
-      </main>
-    </div>
+      </div>
+    </Layout>
   );
 };
 
