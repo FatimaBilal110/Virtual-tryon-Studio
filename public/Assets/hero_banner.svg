@@ -1,43 +1,125 @@
-<svg viewBox="0 0 1000 250" xmlns="http://www.w3.org/2000/svg">
-  <style>
-    .bg-rect { fill: #0f172a; }
-    .grid-line { stroke: rgba(255, 255, 255, 0.04); stroke-width: 1; }
-    .title { fill: #ffffff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 42px; font-weight: 800; letter-spacing: 3px; }
-    .subtitle { fill: #94a3b8; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 15px; letter-spacing: 1.5px; }
-    .accent { fill: #6366f1; } /* Indigo accent */
-    .accent-line { stroke: #6366f1; stroke-width: 1; opacity: 0.4; }
-    .scan-line { fill: url(#scan-gradient); opacity: 0.5; }
-  </style>
-
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 300" width="1000" height="300" role="img" aria-labelledby="t d" xmlns:c2pa="http://c2pa.org/manifest"><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo5YzM2NGJjNC1mMWE5LTQ2ZDgtYWIyOS04NWU4YTE4NjcxYmEAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaN04eSGJwCm8w4oENlShlBUAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDphMTc2ODRlOS0xNGIwLTQ5YzAtOTdmMC1iNWEyZDFmYjlkM2NscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoL0kCMSLyhSWwiPuklpAM7QAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggobCY2v1E1PyBRl2ZmBBZinxg+iQJvLRT5cE3BCnuY5GkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaAiyCx2D4x0gMFvgWeMFyccAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCAMrCQn9qPQjzxoxhg1GyRpxEVXoNwkh9gWMPQIeqABz2RuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBi5Zmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjljMzY0YmM0LWYxYTktNDZkOC1hYjI5LTg1ZThhMTg2NzFiYS9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOjE2YTEzODYzLTg0NjktNDI3Yi1iYzY1LTljNjAyN2ZiNTJjNXJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCChsJja/UTU/IFGXZmYEFmKfGD6JAm8tFPlwTcEKe5jkaJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggKTY3hrIwV1CpzdJ4+ZVX/P6CBL9phnaHqaea28M2Zo+iY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggaTi+LfkZ2mQZoyYSNyRsNCR+knIdgX4xBsH6uDvM+NV0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQInAKVeWUMGfX1stcGvY5Jm1v8GCj5oGN1l0tvfBXWKIa7ZageKBTV12rGk1Z2d4RHARtJo1yrdzEmGPbV//aI4=</c2pa:manifest></metadata>
+  <title id="t">Virtual Try-On Studio</title>
+  <desc id="d">Banner for Virtual Try-On Studio. A garment inside a camera viewfinder is scanned while its fabric color changes between four options.</desc>
   <defs>
-    <linearGradient id="scan-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#6366f1" stop-opacity="0" />
-      <stop offset="90%" stop-color="#6366f1" stop-opacity="0.1" />
-      <stop offset="100%" stop-color="#a855f7" stop-opacity="0.8" /> <!-- Violet end -->
-    </linearGradient>
-    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
-      <path d="M 50 0 L 0 0 0 50" fill="none" class="grid-line" />
+    <style>
+      .sans{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
+      .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+      .label{font-size:12px;font-weight:600;letter-spacing:.28em;fill:#4da3ff}
+      .title{font-size:44px;font-weight:800;letter-spacing:-.5px;fill:#e6edf3}
+      .sub{font-size:17px;fill:#8b949e}
+      .chip{fill:#141923;stroke:#2b3240;stroke-width:1.2}
+      .chiptext{font-size:12px;fill:#9aa4b2;text-anchor:middle}
+      .grid{stroke:#4da3ff;stroke-opacity:.06;stroke-width:1;fill:none}
+      .brk{fill:none;stroke:#4da3ff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;animation:pulse 3.6s ease-in-out infinite}
+      .garment{fill:#e8dcc4;animation:tint 12s linear infinite}
+      .detail{fill:none;stroke:#0b0f17;stroke-opacity:.32;stroke-width:1.6;stroke-linecap:round}
+      .button{fill:#0b0f17;fill-opacity:.38}
+      .shade{fill:#ffffff;fill-opacity:.07}
+      .scan{animation:scan 3.6s linear infinite}
+      .sweep{animation:sweep 7s linear infinite}
+      .dot{animation:blink 2.4s ease-in-out infinite}
+      .ring{fill:none;stroke:#4da3ff;stroke-width:1.6;animation:ring 12s step-end infinite}
+      @keyframes tint{
+        0%,20%{fill:#e8dcc4}
+        25%,45%{fill:#b85c38}
+        50%,70%{fill:#6b7a4a}
+        75%,95%{fill:#5b7fb0}
+        100%{fill:#e8dcc4}
+      }
+      @keyframes ring{
+        0%{transform:translateX(0)}
+        20%{transform:translateX(38px)}
+        45%{transform:translateX(76px)}
+        70%{transform:translateX(114px)}
+        95%{transform:translateX(0)}
+      }
+      @keyframes scan{
+        0%{transform:translateY(0);opacity:0}
+        8%{opacity:1}
+        92%{opacity:1}
+        100%{transform:translateY(212px);opacity:0}
+      }
+      @keyframes sweep{from{transform:translateX(-220px)}to{transform:translateX(1000px)}}
+      @keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
+      @keyframes blink{0%,100%{opacity:.35}50%{opacity:1}}
+      @media (prefers-reduced-motion:reduce){
+        .brk,.garment,.scan,.sweep,.dot,.ring{animation:none}
+        .scan,.sweep{display:none}
+      }
+    </style>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" class="grid"/>
     </pattern>
+    <linearGradient id="trail" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2dd4bf" stop-opacity="0"/>
+      <stop offset="1" stop-color="#2dd4bf" stop-opacity=".28"/>
+    </linearGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#4da3ff" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#4da3ff" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#4da3ff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="28"/></filter>
+    <filter id="glow" x="-50%" y="-300%" width="200%" height="700%">
+      <feGaussianBlur stdDeviation="2.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="frameClip"><rect x="690" y="24" width="200" height="212"/></clipPath>
+    <clipPath id="card"><rect x="0.5" y="0.5" width="999" height="299" rx="18"/></clipPath>
   </defs>
 
-  <!-- Background -->
-  <rect width="100%" height="100%" class="bg-rect" />
-  <rect width="100%" height="100%" fill="url(#grid)" />
+  <rect x="0.5" y="0.5" width="999" height="299" rx="18" fill="#0b0f17"/>
+  <g clip-path="url(#card)">
+    <rect width="1000" height="300" fill="url(#grid)"/>
+    <ellipse cx="790" cy="130" rx="130" ry="105" fill="#3b82f6" opacity=".16" filter="url(#blur)"/>
+    <rect class="sweep" x="0" y="0" width="220" height="2" fill="url(#beam)"/>
+  </g>
+  <rect x="0.5" y="0.5" width="999" height="299" rx="18" fill="none" stroke="#232a36"/>
 
-  <!-- Animated Scan Line (Moving Left to Right) -->
-  <rect x="-250" y="0" width="250" height="100%" class="scan-line">
-    <animate attributeName="x" values="-250; 1000" dur="3.5s" repeatCount="indefinite" />
-  </rect>
+  <!-- text -->
+  <circle class="dot" cx="68" cy="80" r="3.5" fill="#2dd4bf"/>
+  <text class="sans label" x="82" y="84">AI VIRTUAL TRY-ON</text>
+  <text class="sans title" x="64" y="146">Virtual Try-On Studio</text>
+  <text class="sans sub" x="64" y="182">Add your photo and a fabric. Get one generated image of you wearing it.</text>
 
-  <!-- Text Content -->
-  <text x="500" y="125" class="title" text-anchor="middle">VIRTUAL TRY-ON STUDIO</text>
-  <text x="500" y="160" class="subtitle" text-anchor="middle">VISUALIZE APPAREL INSTANTLY. SEAMLESSLY STYLED.</text>
-  
-  <!-- Decorative Element (Top Center) -->
-  <circle cx="500" cy="45" r="3" class="accent" />
-  <path d="M 450 45 L 550 45" class="accent-line" />
-  
-  <!-- Decorative Elements (Side Accents) -->
-  <path d="M 20 60 L 20 190" class="accent-line" stroke-width="2" opacity="0.2" />
-  <path d="M 980 60 L 980 190" class="accent-line" stroke-width="2" opacity="0.2" />
+  <rect class="chip" x="64" y="212" width="62" height="26" rx="8"/>
+  <text class="mono chiptext" x="95" y="229">React</text>
+  <rect class="chip" x="136" y="212" width="88" height="26" rx="8"/>
+  <text class="mono chiptext" x="180" y="229">Supabase</text>
+  <rect class="chip" x="234" y="212" width="72" height="26" rx="8"/>
+  <text class="mono chiptext" x="270" y="229">Gemini</text>
+
+  <!-- viewfinder and garment -->
+  <g transform="translate(790 40) scale(.8)">
+    <path class="garment" d="M-24 0C-12 14 12 14 24 0L62 14L96 120L72 128L58 66L66 230H-66L-58 66L-72 128L-96 120L-62 14Z"/>
+    <path class="shade" d="M0 8C12 12 18 8 24 0L62 14L96 120L72 128L58 66L66 230H0Z"/>
+    <path class="detail" d="M0 10V64"/>
+    <circle class="button" cx="0" cy="26" r="2.4"/>
+    <circle class="button" cx="0" cy="42" r="2.4"/>
+    <circle class="button" cx="0" cy="58" r="2.4"/>
+    <path class="detail" d="M-62 214H62"/>
+    <path class="detail" d="M-60 150V230M60 150V230" stroke-opacity=".16"/>
+  </g>
+
+  <g class="brk">
+    <path d="M690 46V24H712"/>
+    <path d="M868 24H890V46"/>
+    <path d="M690 214V236H712"/>
+    <path d="M868 236H890V214"/>
+  </g>
+
+  <g clip-path="url(#frameClip)">
+    <g class="scan">
+      <rect x="690" y="-56" width="200" height="56" fill="url(#trail)" transform="translate(0 24)"/>
+      <rect x="690" y="23" width="200" height="2" fill="#2dd4bf" filter="url(#glow)"/>
+    </g>
+  </g>
+
+  <!-- fabric options -->
+  <rect class="chip" x="721" y="256" width="24" height="24" rx="7" style="fill:#e8dcc4"/>
+  <rect class="chip" x="759" y="256" width="24" height="24" rx="7" style="fill:#b85c38"/>
+  <rect class="chip" x="797" y="256" width="24" height="24" rx="7" style="fill:#6b7a4a"/>
+  <rect class="chip" x="835" y="256" width="24" height="24" rx="7" style="fill:#5b7fb0"/>
+  <rect class="ring" x="717" y="252" width="32" height="32" rx="10"/>
 </svg>

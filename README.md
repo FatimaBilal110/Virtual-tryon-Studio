@@ -63,7 +63,7 @@ VITE_SUPABASE_PROJECT_ID=your_supabase_project_id
 
 ```bash
 git clone https://github.com/FatimaBilal110/Virtual-tryon-Studio.git
-cd virtual-style-studio
+cd Virtual-tryon-Studio
 npm install
 npm run dev 
 ```
@@ -74,12 +74,11 @@ npm run dev
 The application features a fully redesigned, responsive user interface built using React, TypeScript, and Tailwind CSS. It includes intuitive image dropzones, camera capture components, and sleek navigation layouts to ensure a smooth user experience across devices.
 
 ### 2. Serverless Backend Engine
-Powered by Supabase and Vercel serverless functions, the platform handles core image processing and AI workloads efficiently behind the scenes—including the try-on engine, style recommendations, and ghost mannequin processing.
+Powered by Supabase Edge Functions, the platform handles core image processing and AI workloads efficiently behind the scenes—including the try-on engine, style recommendations, and ghost mannequin processing.
 
 ### 3. Folder Map
 
 ```text
-├── api/                  # Vercel serverless versions of backend functions
 ├── src/                  # Frontend application source
 │   ├── components/       # Reusable UI components & modals
 │   ├── pages/            # Application views (Index, Style, Ghost, etc.)
