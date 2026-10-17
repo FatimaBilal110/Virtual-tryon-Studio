@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="Assets/logo.gif" alt="Virtual Try-On Studio Logo" width="120"/>
+<img src="public/Assets/logo.gif" alt="Virtual Try-On Studio Logo" width="120"/>
 <br><br>
-<img src="Assets/hero_banner.svg" alt="Virtual Try-On Studio Banner" width="1000"/>
+<img src="public/Assets/hero_banner.svg" alt="Virtual Try-On Studio Banner" width="1000"/>
 
 <br><br>
 
