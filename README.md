@@ -78,12 +78,4 @@ Powered by Supabase Edge Functions, the platform handles core image processing a
 
 ### 3. Folder Map
 
-```text
-├── src/                  # Frontend application source
-│   ├── components/       # Reusable UI components & modals
-│   ├── pages/            # Application views (Index, Style, Ghost, etc.)
-│   ├── integrations/     # Supabase client and types
-│   └── lib/              # Site utilities and configurations
-├── supabase/             # Supabase Edge Functions (tryon, style-recommend, ghost-mannequin)
-└── public/               # Static assets & brand media 
-```
+<img src="public/Assets/folder-map.svg" alt="Folder map" width="1000" />
