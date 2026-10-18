@@ -1,6 +1,9 @@
 <div align="center">
 
-<img src="public/Assets/hero_banner.svg" alt="Virtual Try-On Studio Banner" width="1000"/>
+<p align="center">
+  <img src="public/Assets/hero_banner.svg" alt="Virtual Try-On Studio" width="560" /><br />
+  <img src="public/Assets/by-fatima-bilal.svg" alt="By : Fatima Bilal" width="560" />
+</p>
 
 <br><br>
 
