@@ -1,10 +1,9 @@
 <div align="center">
 
-<p align="center">
-  <img src="public/Assets/hero_banner.svg" alt="Virtual Try-On Studio" width="560" /><br />
+<img src="public/Assets/hero_banner.svg" alt="Virtual Try-On Studio Banner" width="1000"/>
+
   <img src="public/Assets/by-fatima-bilal.svg" alt="By : Fatima Bilal" width="560" />
 </p>
-
 <br><br>
 
 <img src="https://img.shields.io/badge/version-1.0.0-383b42?style=flat&logoColor=8b949e" alt="Version 1.0.0"/>&nbsp;<a href="#"><img src="https://img.shields.io/badge/Frontend-React_%7C_Tailwind-383b42?style=flat&logo=react&logoColor=61DAFB" alt="React"/></a>&nbsp;<a href="#"><img src="https://img.shields.io/badge/Backend-Supabase_Edge-383b42?style=flat&logo=supabase&logoColor=3ECF8E" alt="Supabase"/></a>&nbsp;<a href="#"><img src="https://img.shields.io/badge/Deployment-Vercel-383b42?style=flat&logo=vercel&logoColor=ffffff" alt="Vercel"/></a>
